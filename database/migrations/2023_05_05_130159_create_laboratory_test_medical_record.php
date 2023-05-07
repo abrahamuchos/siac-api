@@ -12,14 +12,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('medical_record_laboratory_test', function (Blueprint $table) {
+        Schema::create('laboratory_test_medical_record', function (Blueprint $table) {
             $table->foreignId('medical_record_id')
                 ->constrained()
-                ->onUpdate('cascade')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreignId('laboratory_test_id')
                 ->constrained()
-                ->onUpdate('cascade')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->float('result', 8, 4);
             $table->string('src', 100)->nullable();
@@ -37,6 +37,11 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::table('laboratory_test_medical_record', function (Blueprint $table){
+           $table->dropForeign('laboratory_test_medical_record_medical_record_id_foreign');
+           $table->dropForeign('laboratory_test_medical_record_laboratory_test_id_foreign');
+        });
+
         Schema::dropIfExists('medical_record_laboratory_test');
     }
 };

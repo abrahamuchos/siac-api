@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\ArrhythmiaEsv
  *
- * @property int $id
- * @property int $background_id
- * @property int $year
+ * @property int    $id
+ * @property int    $background_id
+ * @property int    $year
  * @property string $pharmacotherapy
  * @property string $other_pharmacotherapy
  * @method static \Illuminate\Database\Eloquent\Builder|ArrhythmiaEsv newModelQuery()
@@ -26,4 +27,21 @@ use Illuminate\Database\Eloquent\Model;
 class ArrhythmiaEsv extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $fillable = [
+        'background_id',
+        'year',
+        'pharmacotherapy',
+        'other_pharmacotherapy',
+    ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function background(): BelongsTo
+    {
+        return $this->belongsTo(Background::class);
+    }
+
 }

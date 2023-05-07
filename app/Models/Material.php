@@ -4,18 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Material
  *
- * @property int $id
- * @property int $medical_id
- * @property string $title
- * @property string|null $description
- * @property string $content
+ * @property int                             $id
+ * @property int                             $medical_id
+ * @property string                          $title
+ * @property string|null                     $description
+ * @property string                          $content
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property string|null                     $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Material newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Material newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Material query()
@@ -31,5 +34,30 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Material extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'medical_id',
+        'title',
+        'description',
+        'content',
+    ];
+
+    /**
+     * @return BelongsToMany
+     */
+    public function Workplans(): BelongsToMany
+    {
+        return $this->belongsToMany(Workplan::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function medicalUnit(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'medical_id');
+    }
+
+
 }

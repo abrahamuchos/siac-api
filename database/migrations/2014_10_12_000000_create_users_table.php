@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('office_phone', 100);
             $table->string('office_phone2', 100)->nullable();
             $table->string('cellphone', 100)->nullable();
-            $table->unsignedBigInteger('grade_type');
+            $table->unsignedBigInteger( 'grade_type');
             $table->foreign('grade_type')
                 ->references('id')
                 ->on('attributes')
@@ -61,7 +61,9 @@ return new class extends Migration
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
+
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

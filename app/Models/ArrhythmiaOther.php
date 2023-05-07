@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\ArrhythmiaOther
  *
- * @property int $id
- * @property int $background_id
- * @property int $year
+ * @property int    $id
+ * @property int    $background_id
+ * @property int    $year
  * @property string $pharmacotherapy
  * @property string $other_pharmacotherapy
  * @method static \Illuminate\Database\Eloquent\Builder|ArrhythmiaOther newModelQuery()
@@ -26,4 +27,20 @@ use Illuminate\Database\Eloquent\Model;
 class ArrhythmiaOther extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'background_id',
+        'pharmacotherapy',
+        'other_pharmacotherapy',
+    ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function background(): BelongsTo
+    {
+        return $this->belongsTo(Background::class);
+    }
+
+
 }

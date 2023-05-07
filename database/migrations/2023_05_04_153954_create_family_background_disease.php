@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('family_background_disease', function (Blueprint $table) {
+        Schema::create('disease_family_background', function (Blueprint $table) {
             $table->foreignId('family_background_id')
                 ->constrained()
                 ->onDelete('cascade')
@@ -33,6 +33,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('disease_family_background', function (Blueprint $table){
+            $table->dropForeign('disease_family_background_family_background_id_foreign');
+            $table->dropForeign('disease_family_background_disease_id_foreign');
+        });
         Schema::dropIfExists('family_background_disease');
     }
 };

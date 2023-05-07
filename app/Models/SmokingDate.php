@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\SmokingDate
  *
- * @property int $id
- * @property int $diagnostic_id
- * @property string $abandon_date
- * @property string $reset_date
+ * @property int                             $id
+ * @property int                             $diagnostic_id
+ * @property string                          $abandon_date
+ * @property string                          $reset_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|SmokingDate newModelQuery()
@@ -28,4 +29,20 @@ use Illuminate\Database\Eloquent\Model;
 class SmokingDate extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'diagnostic_id',
+        'abandon_date',
+        'reset_date',
+    ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function diagnostic(): BelongsTo
+    {
+        return $this->belongsTo(Diagnostic::class);
+    }
+
+
 }

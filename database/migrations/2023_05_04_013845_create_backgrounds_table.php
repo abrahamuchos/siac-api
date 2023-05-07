@@ -53,8 +53,8 @@ return new class extends Migration
             $table->boolean('revascularized')->default(false);
             $table->boolean('surgical')->default(false);
             $table->year('surgical_year')->nullable();
-            $table->unsignedBigInteger('surgical_number_bridges_type')->nullable();
-            $table->foreign('surgical_number_bridges_type')
+            $table->unsignedBigInteger('surgical_number_bridge_type')->nullable();
+            $table->foreign('surgical_number_bridge_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
@@ -77,8 +77,8 @@ return new class extends Migration
             $table->integer('canadian_functional_class')->nullable();
             $table->boolean('arrhythmia_fa')->default(false);
             $table->year('arrhythmia_fa_year')->nullable();
-            $table->unsignedBigInteger('arrhythmia_fa_type')->nullable();
-            $table->foreign('arrhythmia_fa_type')
+            $table->unsignedBigInteger('arrhythmia_fa_disease_id')->nullable();
+            $table->foreign('arrhythmia_fa_disease_id')
                 ->references('id')
                 ->on('diseases')
                 ->onUpdate('cascade')

@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\CustomTreatment
  *
- * @property int $id
- * @property int $medical_record_id
- * @property string $family
- * @property string $name
- * @property string|null $dose
- * @property int|null $unit_type
- * @property string $frequency
+ * @property int                             $id
+ * @property int                             $medical_record_id
+ * @property string                          $family
+ * @property string                          $name
+ * @property string|null                     $dose
+ * @property int|null                        $unit_type
+ * @property string                          $frequency
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|CustomTreatment newModelQuery()
@@ -34,4 +35,30 @@ use Illuminate\Database\Eloquent\Model;
 class CustomTreatment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'medical_record_id',
+        'family',
+        'name',
+        'dose',
+        'unit_type',
+        'frequency',
+    ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function medicalRecord(): BelongsTo
+    {
+        return $this->belongsTo(MedicalRecord::class);
+    }
+
+    /**
+     * Get unit to attributes
+     * @return BelongsTo
+     */
+    public function unitType(): BelongsTo
+    {
+        return $this->belongsTo(Attribute::class, 'unit_type');
+    }
 }

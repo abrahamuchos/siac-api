@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Invitation
  *
- * @property int $id
- * @property int|null $medical_id
- * @property string $email
- * @property string $first_name
- * @property string $last_name
- * @property bool $gender
- * @property string $token
- * @property string $accepted_at
- * @property string $expires_at
+ * @property int                             $id
+ * @property int|null                        $medical_id
+ * @property string                          $email
+ * @property string                          $first_name
+ * @property string                          $last_name
+ * @property bool                            $gender
+ * @property string                          $token
+ * @property string                          $accepted_at
+ * @property string                          $expires_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation newModelQuery()
@@ -38,4 +39,26 @@ use Illuminate\Database\Eloquent\Model;
 class Invitation extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'medical_id',
+        'email',
+        'first_name',
+        'last_name',
+        'gender',
+        'token',
+        'accepted_at',
+        'expires_at',
+    ];
+
+
+    /**
+     * Get users associated with working doctors
+     * @return HasMany
+     */
+    public function associateDoctors(): HasMany
+    {
+        return $this->hasMany(InvitationDoctor::class);
+    }
+
 }

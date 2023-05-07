@@ -21,8 +21,8 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->unsignedBigInteger('day_id');
-            $table->foreign('day_id')
+            $table->unsignedBigInteger('day_type');
+            $table->foreign('day_type')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade')

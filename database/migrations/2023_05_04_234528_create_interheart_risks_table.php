@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('interheart_risks', function (Blueprint $table) {
             $table->id();
             $table->integer('age');
-            $table->unsignedBigInteger('uses_tobacco_type');
-            $table->foreign('uses_tobacco_type')
+            $table->unsignedBigInteger('use_tobacco_type');
+            $table->foreign('use_tobacco_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')

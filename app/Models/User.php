@@ -4,6 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -11,43 +15,80 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * App\Models\User
  *
- * @property int $id
- * @property string $public_id
- * @property string $first_name
- * @property string|null $second_name
- * @property string $first_surname
- * @property string|null $second_surname
- * @property string $birthdate
- * @property string $email
- * @property string|null $public_email
- * @property string $id_document
- * @property int $id_document_type
- * @property string|null $medical_document
- * @property bool $gender
- * @property string $office_phone
- * @property string|null $office_phone2
- * @property string|null $cellphone
- * @property int $grade_type
- * @property string|null $username_instagram
- * @property string|null $username_twitter
- * @property string|null $username_facebook
- * @property string|null $website
- * @property int $country_id
- * @property int $state_id
- * @property int $city_id
- * @property string $address
- * @property string|null $postal_code
- * @property string|null $avatar
- * @property string|null $letterhead
- * @property string $password
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
- * @property-read int|null $tokens_count
+ * @property int
+ *                   $id
+ * @property string
+ *                   $public_id
+ * @property string
+ *                   $first_name
+ * @property string|null
+ *                   $second_name
+ * @property string
+ *                   $first_surname
+ * @property string|null
+ *                   $second_surname
+ * @property string
+ *                   $birthdate
+ * @property string
+ *                   $email
+ * @property string|null
+ *                   $public_email
+ * @property string
+ *                   $id_document
+ * @property int
+ *                   $id_document_type
+ * @property string|null
+ *                   $medical_document
+ * @property bool
+ *                   $gender
+ * @property string
+ *                   $office_phone
+ * @property string|null
+ *                   $office_phone2
+ * @property string|null
+ *                   $cellphone
+ * @property int
+ *                   $grade_type
+ * @property string|null
+ *                   $username_instagram
+ * @property string|null
+ *                   $username_twitter
+ * @property string|null
+ *                   $username_facebook
+ * @property string|null
+ *                   $website
+ * @property int
+ *                   $country_id
+ * @property int
+ *                   $state_id
+ * @property int
+ *                   $city_id
+ * @property string
+ *                   $address
+ * @property string|null
+ *                   $postal_code
+ * @property string|null
+ *                   $avatar
+ * @property string|null
+ *                   $letterhead
+ * @property string
+ *                   $password
+ * @property \Illuminate\Support\Carbon|null
+ *                   $email_verified_at
+ * @property string|null
+ *                   $remember_token
+ * @property \Illuminate\Support\Carbon|null
+ *                   $created_at
+ * @property \Illuminate\Support\Carbon|null
+ *                   $updated_at
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int,
+ *                \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property-read int|null
+ *                        $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken>
+ *                        $tokens
+ * @property-read int|null
+ *                        $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -89,7 +130,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -97,8 +138,33 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'public_id',
+        'first_name',
+        'second_name',
+        'first_surname',
+        'second_surname',
+        'birthdate',
         'email',
+        'public_email',
+        'id_document',
+        'id_document_type',
+        'medical_document',
+        'gender',
+        'office_phone',
+        'office_phone2',
+        'cellphone',
+        'grade_type',
+        'username_instagram',
+        'username_twitter',
+        'username_facebook',
+        'website',
+        'country_id',
+        'state_id',
+        'city_id',
+        'address',
+        'postal_code',
+        'avatar',
+        'letterhead',
         'password',
     ];
 
@@ -120,4 +186,110 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return BelongsToMany
+     */
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
+     * Get all doctors and relation with medical units
+     * @return HasMany
+     */
+    public function doctors(): HasMany
+    {
+        return $this->hasMany(MedicalUnitDoctor::class, 'doctor_id');
+    }
+
+    /**
+     * Get all medical units and relation with doctors
+     * @return HasMany
+     */
+    public function medicalUnits(): HasMany
+    {
+        return $this->hasMany(MedicalUnitDoctor::class, 'medical_id');
+    }
+
+    /**
+     * Get all assistants and relation with doctors
+     * @return HasMany
+     */
+    public function assistants(): HasMany
+    {
+        return $this->hasMany(AssistantDoctors::class, 'assistant_id');
+    }
+
+    /**
+     * Get all doctors and relation with assistants
+     * @return HasMany
+     */
+    public function doctorWithAssistants(): HasMany
+    {
+        return $this->hasMany(AssistantDoctors::class, 'doctor_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function consultationHours(): HasMany
+    {
+        return $this->hasMany(ConsultationHour::class, 'doctor_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function materials(): HasMany
+    {
+        return $this->hasMany(Material::class, 'doctor_id');
+    }
+
+    /**
+     * Get document type to attributes (CC, PAS, DNI, CI)
+     * @return BelongsTo
+     */
+    public function documentType(): BelongsTo
+    {
+        return $this->belongsTo(Attribute::class, 'id_document_type');
+    }
+
+    /**
+     * Get grade type to attributes (Dr., Dra., Lic.)
+     * @return BelongsTo
+     */
+    public function gradeType(): BelongsTo
+    {
+        return $this->belongsTo(Attribute::class, 'grade_type');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+
+
+
 }

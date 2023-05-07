@@ -65,7 +65,7 @@ return new class extends Migration
             $table->integer('peripheral_pulses_mii')->nullable();
             $table->integer('edema_lower_limbs')->nullable();
             $table->integer('itb_right_ankle_pressure')->nullable();
-            $table->integer('itb_right__arm_pressure')->nullable();
+            $table->integer('itb_right_arm_pressure')->nullable();
             $table->integer('itb_left_ankle_pressure')->nullable();
             $table->integer('itb_left_arm_pressure')->nullable();
             $table->float('score_itb')->nullable();

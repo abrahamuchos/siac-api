@@ -25,7 +25,7 @@ return new class extends Migration
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->boolean('consumption_vegetables');
+            $table->boolean('consumption_vegetable');
             $table->unsignedBigInteger('family_diabetic_type');
             $table->foreign('family_diabetic_type')
                 ->references('id')

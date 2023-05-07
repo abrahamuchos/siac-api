@@ -39,6 +39,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('family_backgrounds', function (Blueprint $table){
+            $table->dropForeign('family_backgrounds_background_id_foreign');
+            $table->dropForeign('family_backgrounds_kinship_type_foreign');
+        });
         Schema::dropIfExists('family_backgrounds');
     }
 };

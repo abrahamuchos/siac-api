@@ -72,7 +72,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->boolean('first_hours_cigar')->default(false);
             $table->boolean('smoking_sick')->default(false);
-            $table->boolean('smoking_prohibited_places')->default(false);
+            $table->boolean('smoking_prohibited_place')->default(false);
             $table->unsignedBigInteger('dislike_cigar_type')->nullable();
             $table->foreign('dislike_cigar_type')
                 ->references('id')
@@ -82,6 +82,7 @@ return new class extends Migration
             $table->integer('fagertom_score')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
