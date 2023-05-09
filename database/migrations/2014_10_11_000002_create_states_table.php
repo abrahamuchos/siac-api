@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('states', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedInteger('id')->primary();
             $table->string('name', 255);
             $table->foreignId('country_id')
                 ->constrained()

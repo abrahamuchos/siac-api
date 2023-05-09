@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedInteger('id')->primary();
             $table->string('name', 255);
             $table->string('iso3', 100)->nullable();
             $table->string('iso2', 100)->nullable();

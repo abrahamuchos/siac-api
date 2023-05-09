@@ -30,6 +30,8 @@ class City extends Model
         'state_id',
     ];
 
+    public $timestamps = false;
+
     /**
      * @return HasMany
      */

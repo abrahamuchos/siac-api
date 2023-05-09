@@ -46,6 +46,7 @@ class Country extends Model
         'region',
         'subregion',
     ];
+    public $timestamps = false;
 
     /**
      * @return HasMany
