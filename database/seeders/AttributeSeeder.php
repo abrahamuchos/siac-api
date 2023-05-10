@@ -251,6 +251,11 @@ class AttributeSeeder extends Seeder
             'name' => 'Pasaporte',
             'value' => 'PAS'
         ]);
+        Attribute::create([
+            'attribute_id' => $documentType->id,
+            'name' => 'Otro',
+            'value' => 'Otro'
+        ]);
 
         // Grade
         $grade = Attribute::create([

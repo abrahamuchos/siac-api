@@ -21,8 +21,8 @@ return new class extends Migration
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('assistants_id');
-            $table->foreign('assistants_id')
+            $table->unsignedBigInteger('assistant_id');
+            $table->foreign('assistant_id')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('public_id')->unique();;
             $table->string('first_name', 100);
             $table->string('second_name', 100)->nullable();
-            $table->string('first_surname', 100);
+            $table->string('first_surname', 100)->nullable();
             $table->string('second_surname', 100)->nullable();
             $table->date('birthdate');
             $table->string('email')->unique();

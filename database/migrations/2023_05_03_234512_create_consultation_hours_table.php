@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('day_type');
             $table->foreign('day_type')
                 ->references('id')
-                ->on('users')
+                ->on('attributes')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->time('start_time');

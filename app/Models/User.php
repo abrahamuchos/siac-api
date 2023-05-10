@@ -3,92 +3,60 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\PersonalAccessToken;
 
 /**
  * App\Models\User
  *
- * @property int
- *                   $id
- * @property string
- *                   $public_id
- * @property string
- *                   $first_name
- * @property string|null
- *                   $second_name
- * @property string
- *                   $first_surname
- * @property string|null
- *                   $second_surname
- * @property string
- *                   $birthdate
- * @property string
- *                   $email
- * @property string|null
- *                   $public_email
- * @property string
- *                   $id_document
- * @property int
- *                   $id_document_type
- * @property string|null
- *                   $medical_document
- * @property bool
- *                   $gender
- * @property string
- *                   $office_phone
- * @property string|null
- *                   $office_phone2
- * @property string|null
- *                   $cellphone
- * @property int
- *                   $grade_type
- * @property string|null
- *                   $username_instagram
- * @property string|null
- *                   $username_twitter
- * @property string|null
- *                   $username_facebook
- * @property string|null
- *                   $website
- * @property int
- *                   $country_id
- * @property int
- *                   $state_id
- * @property int
- *                   $city_id
- * @property string
- *                   $address
- * @property string|null
- *                   $postal_code
- * @property string|null
- *                   $avatar
- * @property string|null
- *                   $letterhead
- * @property string
- *                   $password
- * @property \Illuminate\Support\Carbon|null
- *                   $email_verified_at
- * @property string|null
- *                   $remember_token
- * @property \Illuminate\Support\Carbon|null
- *                   $created_at
- * @property \Illuminate\Support\Carbon|null
- *                   $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int,
- *                \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read int|null
- *                        $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken>
- *                        $tokens
- * @property-read int|null
- *                        $tokens_count
+ * @property int                                                           $id
+ * @property string                                                        $public_id
+ * @property string                                                        $first_name
+ * @property string|null                                                   $second_name
+ * @property string                                                        $first_surname
+ * @property string|null                                                   $second_surname
+ * @property string                                                        $birthdate
+ * @property string                                                        $email
+ * @property string|null                                                   $public_email
+ * @property string                                                        $id_document
+ * @property int                                                           $id_document_type
+ * @property string|null                                                   $medical_document
+ * @property bool                                                          $gender
+ * @property string                                                        $office_phone
+ * @property string|null                                                   $office_phone2
+ * @property string|null                                                   $cellphone
+ * @property int                                                           $grade_type
+ * @property string|null                                                   $username_instagram
+ * @property string|null                                                   $username_twitter
+ * @property string|null                                                   $username_facebook
+ * @property string|null                                                   $website
+ * @property int                                                           $country_id
+ * @property int                                                           $state_id
+ * @property int                                                           $city_id
+ * @property string                                                        $address
+ * @property string|null                                                   $postal_code
+ * @property string|null                                                   $avatar
+ * @property string|null                                                   $letterhead
+ * @property string                                                        $password
+ * @property Carbon|null                                                   $email_verified_at
+ * @property string|null                                                   $remember_token
+ * @property Carbon|null                                                   $created_at
+ * @property Carbon|null                                                   $updated_at
+ * @property-read DatabaseNotificationCollection<int,DatabaseNotification> $notifications
+ * @property-read int|null                                                 $notifications_count
+ * @property-read Collection<int, PersonalAccessToken>                     $tokens
+ * @property-read int|null                                                 $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -219,7 +187,7 @@ class User extends Authenticatable
      */
     public function assistants(): HasMany
     {
-        return $this->hasMany(AssistantDoctors::class, 'assistant_id');
+        return $this->hasMany(AssistantDoctor::class, 'assistant_id');
     }
 
     /**
@@ -228,7 +196,7 @@ class User extends Authenticatable
      */
     public function doctorWithAssistants(): HasMany
     {
-        return $this->hasMany(AssistantDoctors::class, 'doctor_id');
+        return $this->hasMany(AssistantDoctor::class, 'doctor_id');
     }
 
     /**
@@ -288,8 +256,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(City::class);
     }
-
-
 
 
 }

@@ -32,6 +32,12 @@ class Role extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const ADMIN_ROLE = 1;
+    const UM_ROLE = 2;
+    const MD_ROLE = 3;
+    const AS_ROLE = 4;
+    const S_ROLE = 5;
+
     protected $fillable =[
         'name'
     ];

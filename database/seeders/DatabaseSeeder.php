@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +17,10 @@ class DatabaseSeeder extends Seeder
             AttributeSeeder::class,
             CountrySeeder::class,
             StateSeeder::class,
-            CitySeeder::class
+            CitySeeder::class,
+            UserSeeder::class,
+            ConsultationHourSeeder::class,
+
         ]);
     }
 }
