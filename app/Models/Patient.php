@@ -116,9 +116,9 @@ class Patient extends Model
     /**
      * @return BelongsToMany
      */
-    public function medicalUnitDoctor(): BelongsToMany
+    public function medicalUnitDoctors(): BelongsToMany
     {
-        return $this->belongsToMany(MedicalUnitDoctor::class);
+        return $this->belongsToMany(MedicalUnitDoctor::class, 'doctor_patient');
     }
 
     /**

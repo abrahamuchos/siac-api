@@ -44,7 +44,7 @@ return new class extends Migration
             $table->string('username_instagram', 30)->nullable();
             $table->string('username_twitter', 15)->nullable();
             $table->string('username_facebook', 50)->nullable();
-            $table->string('website', 100)->nullable();
+            $table->string('website', 255)->nullable();
             $table->foreignId('country_id')->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

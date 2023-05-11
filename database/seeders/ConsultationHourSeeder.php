@@ -23,7 +23,11 @@ class ConsultationHourSeeder extends Seeder
            return $query->where('id', '=' ,Role::MD_ROLE);
         })->get();
 
-        $days = Attribute::whereAttributeId('56')->get();
+        $days = Attribute::where([
+            ['attribute_id', '=', 56],
+            ['id', '<>', 62],
+            ['id', '<>', 63]
+        ])->get();
         $fakeStartHour = Array ('08:00:00', '09:00:00', '10:15:00', '11:15:00');
         $fakeEndHour = Array ('17:00:00', '18:00:00', '18:30:00', '19:15:00');
 

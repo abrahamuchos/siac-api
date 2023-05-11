@@ -53,7 +53,7 @@ return new class extends Migration
             $table->string('username_facebook', 50)->nullable();
             $table->string('phone_number', 100);
             $table->string('family_phone_number', 100)->nullable();
-            $table->timestamp('admission');
+            $table->timestampTz('admission')->nullable();
             $table->boolean('first_consultation')->default(true);
             $table->unsignedBigInteger('race_type')->nullable();
             $table->foreign('race_type')
