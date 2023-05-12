@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             UserSeeder::class,
             ConsultationHourSeeder::class,
-            PatientSeeder::class
+            PatientSeeder::class,
+            AppointmentSeeder::class
 
         ]);
     }

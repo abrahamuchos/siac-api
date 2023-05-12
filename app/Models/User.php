@@ -126,6 +126,7 @@ class User extends Authenticatable
         'username_twitter',
         'username_facebook',
         'website',
+        'timezone',
         'country_id',
         'state_id',
         'city_id',

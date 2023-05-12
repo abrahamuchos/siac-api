@@ -23,12 +23,12 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestampTz('start_time');
+            $table->timestampTz('end_time');
             $table->string('reason', 100);
-            $table->string('description', 100);
+            $table->string('description', 350);
             $table->boolean('is_open');
-            $table->unsignedBigInteger('reason_deleted_type');
+            $table->unsignedBigInteger('reason_deleted_type')->nullable();
             $table->foreign('reason_deleted_type')
                 ->references('id')
                 ->on('attributes')

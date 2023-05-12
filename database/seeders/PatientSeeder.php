@@ -18,18 +18,14 @@ class PatientSeeder extends Seeder
     public function run(): void
     {
         $medicalUnits = MedicalUnitDoctor::with('doctor')->get();
-        $fakerAdmissionTimes = array(
-            //2023-05-11 15:45:40 (+00:00)
-            '2022-'.random_int(1,12).'-'.random_int(15,30).' '.random_int(9,15).':'.random_int(30,59).':40 (+00:00)',
-            '2023-0'.random_int(1,3).'-'.random_int(15,30).' '.random_int(9,15).':'.random_int(30,59).':40  (+00:00)',
-        );
-//        Carbon::createFromFormat('Y-m-d H:i:s  p', $fakerAdmissionTimes[0], 'UTC');
-
 
         foreach ($medicalUnits as $medicalUnit) {
 
             //Create Patients by medical units doctors
             for($i=0; $i <= 9; $i++){
+                //2023-05-11 15:45:40 (+00:00)
+                $fakerAdmissionTimes = '2022-'.random_int(1,12).'-'.random_int(1,28).' '.random_int(9,15).':00:00 (+00:00)';
+
                 // Creamos un solo paciente con primera consulta
                 $firstConsultation = ($i == 9);
                 Patient::factory()
@@ -39,7 +35,7 @@ class PatientSeeder extends Seeder
                         'state_id' => $medicalUnit->doctor->state_id,
                         'city_id' => $medicalUnit->doctor->city_id,
                         'first_consultation' => $firstConsultation,
-                        'admission' => ($firstConsultation ? null : $fakerAdmissionTimes[array_rand($fakerAdmissionTimes)]),
+                        'admission' => ($firstConsultation ? null : $fakerAdmissionTimes),
                     ]);
 
             }

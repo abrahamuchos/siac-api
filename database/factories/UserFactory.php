@@ -39,6 +39,7 @@ class UserFactory extends Factory
             'username_twitter' => (random_int(0, 1) ? fake()->domainWord() : null),
             'username_facebook' => (random_int(0, 1) ? fake()->domainWord() : null),
             'website' => null,
+            'timezone' => null,
             'country_id' => null,
             'state_id' => null,
             'city_id' => null,
@@ -50,14 +51,15 @@ class UserFactory extends Factory
     }
 
     /**
-     * @param $countryId int
-     * @param $stateId   int
-     * @param $cityId    int
+     * @param        $countryId int
+     * @param        $stateId   int
+     * @param        $cityId    int
+     * @param        $tz        string - timezone
      *
      * @return UserFactory
      * @throws \Exception
      */
-    public function withUnitMedical(int $countryId, int $stateId, int $cityId): UserFactory
+    public function withUnitMedical(int $countryId, int $stateId, int $cityId, string $tz): UserFactory
     {
 
         return $this->state([
@@ -71,6 +73,7 @@ class UserFactory extends Factory
             'id_document_type' => 48,
             'medical_document' => null,
             'office_phone2' => (random_int(0, 1) ? fake()->phoneNumber() : null),
+            'timezone' => $tz,
             'country_id' => $countryId,
             'state_id' => $stateId,
             'city_id' => $cityId,
@@ -83,26 +86,26 @@ class UserFactory extends Factory
 
     /**
      * @param bool  $gender
-     * @param array $idDocument
-     * @param int   $countryId
+     * @param array $countryInfo
      * @param int   $stateId
      * @param int   $cityId
      *
      * @return UserFactory
      * @throws \Exception
      */
-    public function withDoctor(bool $gender, array $idDocument, int $countryId, int $stateId, int $cityId): UserFactory
+    public function withDoctor(bool $gender, array $countryInfo, int $stateId, int $cityId): UserFactory
     {
         return $this->state([
-            'first_name' => fake()->firstName(($gender? 'male' : 'female')),
+            'first_name' => fake()->firstName(($gender ? 'male' : 'female')),
             'second_name' => (random_int(0, 1) ? fake()->lastName() : null),
             'second_surname' => (random_int(0, 1) ? fake()->lastName() : null),
-            'id_document' => $idDocument[0],
-            'id_document_type' => $idDocument[1],
+            'id_document' => $countryInfo[1],
+            'id_document_type' => $countryInfo[2],
             'gender' => $gender,
-            'grade_type' => ($gender? 50 : 51),
+            'grade_type' => ($gender ? 50 : 51),
             'website' => (random_int(0, 1) ? fake()->url() : null),
-            'country_id' => $countryId,
+            'timezone' => $countryInfo[3],
+            'country_id' => $countryInfo[0],
             'state_id' => $stateId,
             'city_id' => $cityId,
             'avatar' => (random_int(0, 1) ? 'https://placehold.co/600x400?text=Avatart+Md' : null),
@@ -112,25 +115,25 @@ class UserFactory extends Factory
 
     /**
      * @param bool  $gender
-     * @param array $idDocument
-     * @param int   $countryId
+     * @param array $countryInfo
      * @param int   $stateId
      * @param int   $cityId
      *
      * @return UserFactory
      * @throws \Exception
      */
-    public function withAssistant(bool $gender, array $idDocument, int $countryId, int $stateId, int $cityId): UserFactory
+    public function withAssistant(bool $gender, array $countryInfo, int $stateId, int $cityId): UserFactory
     {
         return $this->state([
-            'first_name' => fake()->firstName(($gender? 'male' : 'female')). ' (AS)',
+            'first_name' => fake()->firstName(($gender ? 'male' : 'female')) . ' (AS)',
             'second_name' => (random_int(0, 1) ? fake()->lastName() : null),
             'second_surname' => (random_int(0, 1) ? fake()->lastName() : null),
-            'id_document' => $idDocument[0],
-            'id_document_type' => $idDocument[1],
+            'id_document' => $countryInfo[1],
+            'id_document_type' => $countryInfo[2],
             'gender' => $gender,
-            'grade_type' => ($gender? 52 : 53),
-            'country_id' => $countryId,
+            'grade_type' => ($gender ? 52 : 53),
+            'timezone' => $countryInfo[3],
+            'country_id' => $countryInfo[0],
             'state_id' => $stateId,
             'city_id' => $cityId,
             'avatar' => (random_int(0, 1) ? 'https://placehold.co/600x400?text=Avatart+As' : null),

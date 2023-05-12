@@ -45,6 +45,7 @@ return new class extends Migration
             $table->string('username_twitter', 15)->nullable();
             $table->string('username_facebook', 50)->nullable();
             $table->string('website', 255)->nullable();
+            $table->string('timezone',100);
             $table->foreignId('country_id')->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
