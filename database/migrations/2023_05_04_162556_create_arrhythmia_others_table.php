@@ -20,8 +20,8 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->year('year');
-            $table->string('pharmacotherapy', 100);
-            $table->string('other_pharmacotherapy', 500);
+            $table->string('pharmacotherapy', 100)->nullable();
+            $table->string('other_pharmacotherapy', 500)->nullable();
         });
     }
 

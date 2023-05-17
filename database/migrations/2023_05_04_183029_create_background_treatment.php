@@ -22,6 +22,12 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->foreignId('drug_reaction_id')
+                ->nullable()
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

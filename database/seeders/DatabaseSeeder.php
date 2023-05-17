@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Patient;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +21,18 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ConsultationHourSeeder::class,
             PatientSeeder::class,
-            AppointmentSeeder::class
+            AppointmentSeeder::class,
+            DrugReactionSeeder::class,
+            TreatmentSeeder::class,
+            DiseaseSeeder::class,
+            BackgroundSeeder::class,
+            ImSeeder::class,
+            ArrhythmiaEsvSeeder::class,
+            ArrhythmiaOtherSeeder::class,
+            FamilyBackgroundSeeder::class,
+
+
+
 
         ]);
     }

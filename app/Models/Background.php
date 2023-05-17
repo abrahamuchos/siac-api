@@ -14,8 +14,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int                             $id
  * @property bool                            $hta
+ * @property bool                            $hta_controlled
  * @property int|null                        $hta_diagnostic_time_type
  * @property bool                            $prediabetic
+ * @property bool                            $prediabetic_controlled
  * @property int|null                        $prediabetic_diagnostic_time_type
  * @property bool                            $diabetic
  * @property bool|null                       $diabetic_controlled
@@ -170,8 +172,10 @@ class Background extends Model
 
     protected $fillable = [
         'hta',
+        'hta_controlled',
         'hta_diagnostic_time_type',
         'prediabetic',
+        'prediabetic_controlled',
         'prediabetic_diagnostic_time_type',
         'diabetic',
         'diabetic_controlled',
@@ -289,6 +293,15 @@ class Background extends Model
     public function treatments(): BelongsToMany
     {
         return $this->belongsToMany(Treatment::class);
+    }
+
+    /**
+     * Reactions to treatments and backgrounds
+     * @return BelongsToMany
+     */
+    public function drugReactions(): BelongsToMany
+    {
+        return $this->belongsToMany(DrugReaction::class, 'background_treatment', 'drug_reaction_id');
     }
 
     /**

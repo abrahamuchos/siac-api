@@ -19,7 +19,7 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('name',45);
+            $table->string('name',100);
             $table->unsignedBigInteger('unit_type')->nullable();
             $table->foreign('unit_type')
                 ->references('id')

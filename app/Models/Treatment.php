@@ -69,7 +69,7 @@ class Treatment extends Model
      */
     public function childTreatments(): HasMany
     {
-        return $this->hasMany(Treatment::class);
+        return $this->hasMany(Treatment::class, 'treatment_id', 'id');
     }
 
     /**
@@ -109,7 +109,7 @@ class Treatment extends Model
      */
     public function parentTreatment(): BelongsTo
     {
-        return $this->belongsTo(Treatment::class);
+        return $this->belongsTo(Treatment::class, 'treatment_id', 'id');
     }
 
     /**

@@ -16,13 +16,15 @@ return new class extends Migration
         Schema::create('backgrounds', function (Blueprint $table) {
             $table->id();
             $table->boolean('hta')->default(false);
+            $table->boolean('hta_controlled')->nullable();
             $table->unsignedBigInteger('hta_diagnostic_time_type')->nullable();
             $table->foreign('hta_diagnostic_time_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->boolean('prediabetic')->default(false);;
+            $table->boolean('prediabetic')->default(false);
+            $table->boolean('prediabetic_controlled')->nullable();
             $table->unsignedBigInteger('prediabetic_diagnostic_time_type')->nullable();
             $table->foreign('prediabetic_diagnostic_time_type')
                 ->references('id')

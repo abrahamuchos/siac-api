@@ -110,6 +110,15 @@ class MedicalRecord extends Model
     }
 
     /**
+     * Reactions to treatments and backgrounds
+     * @return BelongsToMany
+     */
+    public function drugReactions(): BelongsToMany
+    {
+        return $this->belongsToMany(DrugReaction::class, 'medical_record_treatment', 'drug_reaction_id');
+    }
+
+    /**
      * @return HasMany
      */
     public function customTreatments(): HasMany

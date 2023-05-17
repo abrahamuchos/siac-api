@@ -43,4 +43,15 @@ class DrugReaction extends Model
     {
         return $this->belongsToMany(Treatment::class, 'drug_reaction_treatment');
     }
+
+    public function medicalRecordTreatments(): BelongsToMany
+    {
+        return $this->belongsToMany(MedicalRecord::class, 'medical_record_treatment', 'drug_reaction_id');
+    }
+
+    public function backgrounds(): BelongsToMany
+    {
+        return $this->belongsToMany(Background::class, 'background_treatment', 'drug_reaction_id');
+    }
+
 }

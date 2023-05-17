@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Attribute
@@ -32,4 +34,23 @@ class Attribute extends Model
         'name',
         'value',
     ];
+
+    /**
+     * Get all attributes' child (recursive)
+     * @return HasMany
+     */
+    public function childAttributes(): HasMany
+    {
+        return $this->hasMany(Attribute::class);
+    }
+
+    /**
+     * Get attributes' parent (recursive)
+     * @return BelongsTo
+     */
+    public function parentAttributes(): BelongsTo
+    {
+        return $this->belongsTo(Attribute::class);
+    }
+
 }

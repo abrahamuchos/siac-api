@@ -82,7 +82,7 @@ class AttributeSeeder extends Seeder
 
 //        Unidades de volumen - SI
         $volume = Attribute::create([
-            'name' => 'Unidades de masa - Inglesa'
+            'name' => 'Unidades de volumen - SI'
         ]);
         Attribute::create([
             'attribute_id' => $volume->id,

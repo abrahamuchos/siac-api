@@ -33,6 +33,7 @@ class ArrhythmiaOther extends Model
         'pharmacotherapy',
         'other_pharmacotherapy',
     ];
+    public $timestamps = false;
 
     /**
      * @return BelongsTo
