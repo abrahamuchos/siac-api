@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * App\Models\Invitation
@@ -20,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string                          $expires_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\InvitationFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation query()
@@ -46,6 +49,7 @@ class Invitation extends Model
         'first_name',
         'last_name',
         'gender',
+        'role',
         'token',
         'accepted_at',
         'expires_at',
@@ -61,4 +65,15 @@ class Invitation extends Model
         return $this->hasMany(InvitationDoctor::class);
     }
 
+    /**
+     * Make token to invitation
+     * @return string
+     */
+    public static function createToken(): string
+    {
+        $randomString = \Str::random(40);
+        $now = now()->format('Y-m-d H:i:s.u');
+
+        return Hash::make($randomString.$now);
+    }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\AssistantDoctor;
 use App\Models\City;
+use App\Models\Material;
 use App\Models\MedicalUnitDoctor;
 use App\Models\Role;
 use App\Models\State;
@@ -23,22 +24,23 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $countries = array(64, 48, 11, 173, 170, 239);
-        $roles = $this->_createRoles();
+        $roles = Role::get();
 
         for ($i = 0; $i <= 9; $i++) {
             $countryId = $countries[array_rand($countries)];
             $stateId = State::whereHas('country', function (Builder $query) use ($countryId) {
                 return $query->where('id', $countryId);
-            })->get()->random()->id;
+            })->get()->random(1)->first()->id;
             $cityId = City::whereHas('state', function (Builder $query) use ($stateId) {
                 return $query->where('id', $stateId);
-            })->get()->random()->id;
+            })->get()->random(1)->first()->id;
 
             //Create Unit Medical (UM) and attach role
             $tz = $this->_countryInfo($countryId);
             $um = User::factory()
                 ->withUnitMedical($countryId, $stateId, $cityId, $tz[3])
-                ->hasAttached($roles['um'])
+                ->hasAttached($roles->find(Role::UM_ROLE))
+                ->has(Material::factory(5),  'materials')
                 ->create();
 
 
@@ -49,7 +51,7 @@ class UserSeeder extends Seeder
                 // Create Doctor and attach role
                 $doctor = User::factory()
                     ->withDoctor($gender, $countryInfo, $stateId, $cityId)
-                    ->hasAttached($roles['md'])
+                    ->hasAttached($roles->find(Role::MD_ROLE))
                     ->create();
 
                 //Associated Medical unit Doctor
@@ -65,7 +67,7 @@ class UserSeeder extends Seeder
                     //Create assistant and attach role
                     $assistant = User::factory()
                         ->withAssistant($gender, $countryInfo, $stateId, $cityId)
-                        ->hasAttached($roles['as'])
+                        ->hasAttached($roles->find(Role::AS_ROLE))
                         ->create();
                 }
                 // Asociamos los asistentes con doctores (5 doctores por 1 asistente)
@@ -113,34 +115,4 @@ class UserSeeder extends Seeder
         }
     }
 
-    /**
-     * Create roles
-     * @return array
-     */
-    private function _createRoles(): array
-    {
-        $adminRole = Role::create([
-            'name' => 'admin'
-        ]);
-        $umRole = Role::create([
-            'name' => 'Unidad médica (Um)'
-        ]);
-        $mdRole = Role::create([
-            'name' => 'doctor (Md)'
-        ]);
-        $asRole = Role::create([
-            'name' => 'Asistente médica (As)'
-        ]);
-        $sRole = Role::create([
-            'name' => 'Secretaria (S)'
-        ]);
-
-        return [
-            'admin' => $adminRole,
-            'um' => $umRole,
-            'md' => $mdRole,
-            'as' => $asRole,
-            's' => $sRole
-        ];
-    }
 }

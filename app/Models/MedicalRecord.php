@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $deleted_at
+ * @method static \Database\Factories\MedicalRecordFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalRecord newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalRecord newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MedicalRecord query()

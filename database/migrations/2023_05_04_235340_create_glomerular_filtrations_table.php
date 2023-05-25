@@ -17,7 +17,14 @@ return new class extends Migration
             $table->id();
             $table->integer('age');
             $table->boolean('afro_american');
-            $table->boolean('serum_creatinine');
+            $table->float('serum_creatinine');
+            $table->unsignedBigInteger('serum_creatinine_unit_type');
+            $table->foreign('serum_creatinine_unit_type')
+                ->references('id')
+                ->on('attributes')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
 
             $table->timestamps();
             $table->softDeletes();

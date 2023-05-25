@@ -84,13 +84,13 @@ class BackgroundFactory extends Factory
             'arrhythmia_fa' => $arrhythmiaFa,
             'arrhythmia_fa_year' => ($arrhythmiaFa ? random_int(2000, 2020) : null),
             'arrhythmia_fa_disease_id' => ($arrhythmiaFa ? $arrhythmiaFaDisease->random() : null),
-            'arrhythmia_fa_pharmacotherapy' => ($arrhythmiaFa && random_int(0, 1) ? fake()->sentence(5) : null),
-            'arrhythmia_fa_others_pharmacotherapy' => ($arrhythmiaFa && random_int(0, 1) ? fake()->paragraph(1) : null),
+            'arrhythmia_fa_pharmacotherapy' => ($arrhythmiaFa && random_int(0, 1) ? fake()->text(100) : null),
+            'arrhythmia_fa_others_pharmacotherapy' => ($arrhythmiaFa && random_int(0, 1) ? fake()->text(500) : null),
             'arrhythmia_fa_ablation' => ($arrhythmiaFa && $arrhythmiaFaAblation ? true : null),
             'arrhythmia_fa_ablation_year' => ($arrhythmiaFa && $arrhythmiaFaAblation ? fake()->year : null),
             'arrhythmia_fa_anticoagulated' => ($arrhythmiaFa && $arrhythmiaFaAnti ? true : null),
             'arrhythmia_fa_anticoagulated_pharmacotherapy' => ($arrhythmiaFa && $arrhythmiaFaAnti && random_int(0,
-                1) ? fake()->sentence(5) : null),
+                1) ? fake()->text(100) : null),
             'arrhythmia_fa_cdi' => ($arrhythmiaFa ? $arrhythmiaFaCdi : null),
             'arrhythmia_fa_cdi_year' => ($arrhythmiaFa && $arrhythmiaFaCdi ? fake()->year : null),
             'has_bled_hta' => ($arrhythmiaFa ? random_int(0, 1) : null),
@@ -133,12 +133,9 @@ class BackgroundFactory extends Factory
             'ictus_disease_id' => ($ictus ? $ictusDiseases->random() : null),
 
             //Antecedentes relevantes no cardiovasculares
-            'relevant_noncardiovascular' => ( (bool) random_int(0,1) ? fake()->paragraph(3) : null),
-            'custom_treatment' => ( (bool) random_int(0,1) ? fake()->paragraph(2) : null)
-
-
-
-
+            'relevant_noncardiovascular' => ( (bool) random_int(0,1) ? fake()->text(500) : null),
+            'custom_treatment' => ( (bool) random_int(0,1) ? fake()->text(500) : null)
         ];
     }
+
 }

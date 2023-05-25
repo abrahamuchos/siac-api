@@ -20,7 +20,7 @@ class ImSeeder extends Seeder
         $backgrounds = Background::get(['id']);
 
         foreach ($backgrounds as $background){
-            // De forma random creamos IMs para antecedentes (background)
+            // Random create IMs to backgrounds
             if(random_int(0,1)){
                 Im::factory()
                     ->create([

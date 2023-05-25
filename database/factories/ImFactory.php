@@ -30,7 +30,7 @@ class ImFactory extends Factory
             'q' => !$noQ && $q,
             'no_q' => !$q && $noQ,
             'year' => ($q || $noQ ? random_int(2000, 2020) : null),
-            'location' => ($q || $noQ ? fake()->sentence(4) : null)
+            'location' => ($q || $noQ ? fake()->text(random_int(55, 100)) : null)
         ];
     }
 }

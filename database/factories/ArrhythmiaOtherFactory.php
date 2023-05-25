@@ -20,8 +20,8 @@ class ArrhythmiaOtherFactory extends Factory
         return [
             'background_id' => null,
             'year' => random_int(2000, 2020),
-            'pharmacotherapy' => (random_int(0,1) ? fake()->sentence(5) : null),
-            'other_pharmacotherapy' => (random_int(0,1) ? fake()->paragraph(5) : null)
+            'pharmacotherapy' => (random_int(0,1) ? fake()->text(100) : null),
+            'other_pharmacotherapy' => (random_int(0,1) ? fake()->text(500) : null)
         ];
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration {
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreignId('background_id')
+                ->nullable()
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
@@ -62,7 +63,7 @@ return new class extends Migration {
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreignId('recipe_id')
+            $table->foreignId('recipe_id')->nullable()
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

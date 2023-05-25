@@ -22,7 +22,7 @@ return new class extends Migration
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('cant_tobacco_type');
+            $table->unsignedBigInteger('cant_tobacco_type')->nullable();
             $table->foreign('cant_tobacco_type')
                 ->references('id')
                 ->on('attributes')

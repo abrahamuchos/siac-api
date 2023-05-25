@@ -13,10 +13,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int                             $id
  * @property int                             $age
  * @property bool                            $afro_american
- * @property bool                            $serum_creatinine
+ * @property float                           $serum_creatinine
+ * @property int                             $serum_creatinine_unit_type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $deleted_at
+* @method static \Database\Factories\GlomerularFiltrationFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|GlomerularFiltration newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GlomerularFiltration newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GlomerularFiltration query()
@@ -37,6 +39,7 @@ class GlomerularFiltration extends Model
         'age',
         'afro_american',
         'serum_creatinine',
+        'serum_creatinine_unit_type'
     ];
 
     /**

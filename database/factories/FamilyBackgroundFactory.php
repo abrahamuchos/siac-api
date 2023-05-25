@@ -24,7 +24,7 @@ class FamilyBackgroundFactory extends Factory
             'background_id' => null,
             'kinship_type' => $kinshipType->random(),
             'age' => random_int(45, 89),
-            'other_disease' => (random_int(0,1) ? fake()->paragraph(5) : null)
+            'other_disease' => (random_int(0,1) ? fake()->text(500) : null)
         ];
     }
 

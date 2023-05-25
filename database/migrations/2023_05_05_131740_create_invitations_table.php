@@ -18,10 +18,11 @@ return new class extends Migration
             $table->integer('medical_id')->nullable();
             $table->string('email', 100);
             $table->string('first_name', 65);
-            $table->string('last_name', 65);
+            $table->string('last_name', 65)->nullable();
             $table->boolean('gender');
+            $table->integer('role');
             $table->string('token', 255);
-            $table->timestamp('accepted_at');
+            $table->timestamp('accepted_at')->nullable();
             $table->timestamp('expires_at');
 
             $table->timestamps();

@@ -213,7 +213,7 @@ class User extends Authenticatable
      */
     public function materials(): HasMany
     {
-        return $this->hasMany(Material::class, 'doctor_id');
+        return $this->hasMany(Material::class, 'medical_id');
     }
 
     /**

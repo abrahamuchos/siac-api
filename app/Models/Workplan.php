@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $deleted_at
+ * @method static \Database\Factories\WorkplanFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Workplan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Workplan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Workplan query()
@@ -56,7 +57,7 @@ class Workplan extends Model
      * Get all paraclinical examination
      * @return BelongsToMany
      */
-    public function paraclinicalExam(): BelongsToMany
+    public function paraclinicalExams(): BelongsToMany
     {
         return $this->belongsToMany(ParaclinicalExamination::class, 'paraclinical_examination_workplan');
     }

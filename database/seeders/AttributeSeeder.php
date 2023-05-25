@@ -563,7 +563,7 @@ class AttributeSeeder extends Seeder
         ]);
         Attribute::create([
             'attribute_id' => $aus->id,
-            'name' => '',
+            'name' => 'XXXXX',
         ]);
         Attribute::create([
             'attribute_id' => $aus->id,
@@ -608,14 +608,14 @@ class AttributeSeeder extends Seeder
             'name' => 'Tricuspideo',
         ]);
         Attribute::create([
-            'attribute_id' => $breaht->id,
+            'attribute_id' => $focus->id,
             'name' => 'Pulmonar',
         ]);
 
 
 //        Tipo de ejercicios
         $exercise = Attribute::create([
-            'name' => 'Unidades de tiempo - SI'
+            'name' => 'Tipo de ejercicios'
         ]);
         Attribute::create([
             'attribute_id' => $exercise->id,
@@ -801,7 +801,7 @@ class AttributeSeeder extends Seeder
         ]);
         $diabetes = Attribute::create([
             'attribute_id' => $findRisk->id,
-            'name' => 'Actividad física'
+            'name' => 'Historial de familiar con diabetes'
         ]);
         Attribute::create([
             'attribute_id' => $diabetes->id,
@@ -989,6 +989,64 @@ class AttributeSeeder extends Seeder
         Attribute::create([
             'attribute_id' => $cigarDislike->id,
             'name' => 'Cualquier otro',
+        ]);
+
+        // Electrocardiograma ritmo (options)
+        $rhythm= Attribute::create([
+            'name' => 'Ritmo (Options)'
+        ]);
+        Attribute::create([
+            'attribute_id' => $rhythm->id,
+            'name' => 'Sinusal',
+        ]);
+        Attribute::create([
+            'attribute_id' => $rhythm->id,
+            'name' => 'No Sinusal',
+        ]);
+
+        //Daily amount alcohol (Lifestyle)
+        $amount = Attribute::create([
+           'name' => 'Cantidad diaria de alcohol'
+        ]);
+        Attribute::create([
+            'attribute_id' => $amount->id,
+            'name' => '1 Copa diaria',
+        ]);
+        Attribute::create([
+            'attribute_id' => $amount->id,
+            'name' => '2 Copas diarias',
+        ]);
+        Attribute::create([
+            'attribute_id' => $amount->id,
+            'name' => '3 Copas diarias',
+        ]);
+        Attribute::create([
+            'attribute_id' => $amount->id,
+            'name' => '4 Copas diarias',
+        ]);
+        Attribute::create([
+            'attribute_id' => $amount->id,
+            'name' => '5 o más Copas diarias',
+        ]);
+
+
+
+        /**
+         * Opciones adicionales
+         */
+
+         // Para el riesgo de find risk
+        Attribute::create([
+            'attribute_id' => $tabaco->id,
+            'name' => 'Nunca he fumado',
+            'value' => 0,
+        ]);
+
+        //Unidades de masa - SI
+        Attribute::create([
+            'attribute_id' => $weight->id,
+            'name' => 'Miligramo por decilitro',
+            'value' => 'mg/dL'
         ]);
 
 

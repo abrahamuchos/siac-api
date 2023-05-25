@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool                            $arrhythmia
  * @property string|null                     $arrhythmia_description
  * @property bool                            $heart_failure
+ * @property bool                            $heart_failure_resynchronize
  * @property string|null                     $heart_failure_description
  * @property bool                            $smoking
  * @property string|null                     $has_been_smoking
@@ -49,6 +50,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|null                        $fagertom_score
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\DiagnosticFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Diagnostic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diagnostic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diagnostic query()
@@ -102,6 +104,7 @@ class Diagnostic extends Model
         'hta_risk_type',
         'hta_description',
         'dyslipidemia',
+        'dyslipidemia_hf',
         'dyslipidemia_type',
         'dyslipidemia_description',
         'overweight',
@@ -117,6 +120,7 @@ class Diagnostic extends Model
         'arrhythmia',
         'arrhythmia_description',
         'heart_failure',
+        'heart_failure_resynchronize',
         'heart_failure_description',
         'smoking',
         'has_been_smoking',

@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      *
      * @return void
+     * @throws \Exception
      */
     public function run(): void
     {
@@ -18,14 +19,23 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             StateSeeder::class,
             CitySeeder::class,
-            UserSeeder::class,
+
+            RoleSeeder::class,
+            UserSeeder::class, // Add Medical Unit Doctor, Assistant Doctor and Materials
             ConsultationHourSeeder::class,
-            PatientSeeder::class,
-            AppointmentSeeder::class,
+            ConsultationSeeder::class,
+            PostSeeder::class,
+            InvitationSeeder::class,
+
+            ParaclinicalExaminationSeeder::class,
+            LaboratoryTestSeeder::class,
             DrugReactionSeeder::class,
             TreatmentSeeder::class,
             DiseaseSeeder::class,
-            BackgroundSeeder::class,
+
+            PatientSeeder::class,
+            AppointmentSeeder::class,
+            MedicalRecordSeeder::class, // Add all categories
             ImSeeder::class,
             ArrhythmiaEsvSeeder::class,
             ArrhythmiaOtherSeeder::class,
@@ -36,4 +46,5 @@ class DatabaseSeeder extends Seeder
 
         ]);
     }
+
 }

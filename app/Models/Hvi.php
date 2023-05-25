@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $deleted_at
+ * @method static \Database\Factories\HviFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Hvi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Hvi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Hvi query()

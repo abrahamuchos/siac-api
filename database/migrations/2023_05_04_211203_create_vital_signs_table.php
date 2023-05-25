@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('vital_signs', function (Blueprint $table) {
             $table->id();
             $table->float('temp')->nullable();
-            $table->unsignedBigInteger('temp_unit_type');
+            $table->unsignedBigInteger('temp_unit_type')->nullable();
             $table->foreign('temp_unit_type')
                 ->references('id')
                 ->on('attributes')
@@ -45,105 +45,105 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('sitting_pad_right_arm')->nullable();
-            $table->unsignedBigInteger('sitting_pad_right_arm_unit_type');
+            $table->unsignedBigInteger('sitting_pad_right_arm_unit_type')->nullable();
             $table->foreign('sitting_pad_right_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('sitting_pas_left_arm')->nullable();
-            $table->unsignedBigInteger('sitting_pas_left_arm_unit_type');
+            $table->unsignedBigInteger('sitting_pas_left_arm_unit_type')->nullable();
             $table->foreign('sitting_pas_left_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('sitting_pad_left_arm')->nullable();
-            $table->unsignedBigInteger('sitting_pad_left_arm_unit_type');
+            $table->unsignedBigInteger('sitting_pad_left_arm_unit_type')->nullable();
             $table->foreign('sitting_pad_left_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('lying_down_breathing_frequency')->nullable();
-            $table->unsignedBigInteger('lying_down_breathing_frequency_unit_type');
+            $table->unsignedBigInteger('lying_down_breathing_frequency_unit_type')->nullable();
             $table->foreign('lying_down_breathing_frequency_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('lying_down_heart_rate')->nullable();
-            $table->unsignedBigInteger('lying_down_heart_rate_unit_type');
+            $table->unsignedBigInteger('lying_down_heart_rate_unit_type')->nullable();
             $table->foreign('lying_down_heart_rate_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('lying_down_pas_right_arm')->nullable();
-            $table->unsignedBigInteger('lying_down_pas_right_arm_unit_type');
+            $table->unsignedBigInteger('lying_down_pas_right_arm_unit_type')->nullable();
             $table->foreign('lying_down_pas_right_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('lying_down_pad_right_arm')->nullable();
-            $table->unsignedBigInteger('lying_down_pad_right_arm_unit_type');
+            $table->unsignedBigInteger('lying_down_pad_right_arm_unit_type')->nullable();
             $table->foreign('lying_down_pad_right_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('lying_down_pas_left_arm')->nullable();
-            $table->unsignedBigInteger('lying_down_pas_left_arm_unit_type');
+            $table->unsignedBigInteger('lying_down_pas_left_arm_unit_type')->nullable();
             $table->foreign('lying_down_pas_left_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('lying_down_pad_left_arm')->nullable();
-            $table->unsignedBigInteger('lying_down_pad_left_arm_unit_type');
+            $table->unsignedBigInteger('lying_down_pad_left_arm_unit_type')->nullable();
             $table->foreign('lying_down_pad_left_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('standing_breathing_frequency')->nullable();
-            $table->unsignedBigInteger('standing_breathing_frequency_unit_type');
+            $table->unsignedBigInteger('standing_breathing_frequency_unit_type')->nullable();
             $table->foreign('standing_breathing_frequency_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('standing_heart_rate')->nullable();
-            $table->unsignedBigInteger('standing_heart_rate_unit_type');
+            $table->unsignedBigInteger('standing_heart_rate_unit_type')->nullable();
             $table->foreign('standing_heart_rate_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('standing_pas_right_arm')->nullable();
-            $table->unsignedBigInteger('standing_pas_right_arm_unit_type');
+            $table->unsignedBigInteger('standing_pas_right_arm_unit_type')->nullable();
             $table->foreign('standing_pas_right_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('standing_pad_right_arm')->nullable();
-            $table->unsignedBigInteger('standing_pad_right_arm_unit_type');
+            $table->unsignedBigInteger('standing_pad_right_arm_unit_type')->nullable();
             $table->foreign('standing_pad_right_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('standing_pas_left_arm')->nullable();
-            $table->unsignedBigInteger('standing_pas_left_arm_unit_type');
+            $table->unsignedBigInteger('standing_pas_left_arm_unit_type')->nullable();
             $table->foreign('standing_pas_left_arm_unit_type')
                 ->references('id')
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->float('standing_pad_left_arm')->nullable();
-            $table->unsignedBigInteger('standing_pad_left_arm_unit_type');
+            $table->unsignedBigInteger('standing_pad_left_arm_unit_type')->nullable();
             $table->foreign('standing_pad_left_arm_unit_type')
                 ->references('id')
                 ->on('attributes')

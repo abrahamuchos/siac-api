@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $deleted_at
+ * @method static \Database\Factories\ElectrocardiogramFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Electrocardiogram newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Electrocardiogram newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Electrocardiogram query()

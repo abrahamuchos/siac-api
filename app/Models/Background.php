@@ -87,6 +87,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $deleted_at
+ * @method static \Database\Factories\BackgroundFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Background newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Background newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Background query()

@@ -23,10 +23,10 @@ class PatientSeeder extends Seeder
 
             //Create Patients by medical units doctors
             for($i=0; $i <= 9; $i++){
-                //2023-05-11 15:45:40 (+00:00)
+                // This is a false time for patient admission
                 $fakerAdmissionTimes = '2022-'.random_int(1,12).'-'.random_int(1,28).' '.random_int(9,15).':00:00 (+00:00)';
 
-                // Creamos un solo paciente con primera consulta
+                // Create only one patient with first consultation (by UM)
                 $firstConsultation = ($i == 9);
                 Patient::factory()
                     ->hasAttached($medicalUnit)
@@ -41,7 +41,6 @@ class PatientSeeder extends Seeder
             }
 
         }
-
-
     }
+
 }

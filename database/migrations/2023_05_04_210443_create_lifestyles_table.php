@@ -17,6 +17,13 @@ return new class extends Migration
             $table->id();
             $table->boolean('physical_exercise');
             $table->date('start_physical_activity');
+            $table->boolean('drink_alcohol')->default(false);
+            $table->unsignedBigInteger('qty_alcohol_type')->nullable();
+            $table->foreign('qty_alcohol_type')
+                ->references('id')
+                ->on('attributes')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->timestamps();
             $table->softDeletes();

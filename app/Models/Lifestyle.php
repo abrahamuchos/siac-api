@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,9 +14,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int                             $id
  * @property bool                            $physical_exercise
  * @property string                          $start_physical_activity
+ * @property bool                            $drink_alcohol
+ * @property int                             $qty_alcohol_type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $deleted_at
+ * @method static \Database\Factories\LifestyleFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Lifestyle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lifestyle newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lifestyle query()
@@ -34,6 +38,8 @@ class Lifestyle extends Model
     protected $fillable = [
         'physical_exercise',
         'start_physical_activity',
+        'drink_alcohol',
+        'qty_alcohol_type'
     ];
 
     /**
@@ -52,5 +58,12 @@ class Lifestyle extends Model
         return $this->hasMany(PhysicalActivity::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
+    public function cantAlcohol(): BelongsTo
+    {
+        return $this->belongsTo(Attribute::class, 'cant_alcohol_type');
+    }
 
 }

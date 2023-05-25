@@ -23,7 +23,7 @@ return new class extends Migration {
                 ->onUpdate('cascade');
             $table->float('result', 8, 4);
             $table->string('src', 100)->nullable();
-            $table->time('day_test');
+            $table->timestamp('test_date');
 
             $table->timestamps();
             $table->softDeletes();

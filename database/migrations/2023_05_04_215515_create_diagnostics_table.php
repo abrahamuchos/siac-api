@@ -25,6 +25,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('hta_description', 500)->nullable();
             $table->boolean('dyslipidemia')->default(false);
+            $table->boolean('dyslipidemia_hf')->nullable();
             $table->unsignedBigInteger('dyslipidemia_type')->nullable();
             $table->foreign('dyslipidemia_type')
                 ->references('id')
@@ -45,6 +46,7 @@ return new class extends Migration
             $table->boolean('arrhythmia')->default(false);
             $table->string('arrhythmia_description', 500)->nullable();
             $table->boolean('heart_failure')->default(false);
+            $table->boolean('heart_failure_resynchronize')->nullable();
             $table->string('heart_failure_description', 500)->nullable();
             $table->boolean('smoking')->default(false);
             $table->string('has_been_smoking', 500)->nullable();
@@ -55,9 +57,9 @@ return new class extends Migration
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->boolean('ever_quit_smoking')->default(false);
-            $table->boolean('quit_smoking')->default(false);
-            $table->boolean('brief_counseling')->default(false);
+            $table->boolean('ever_quit_smoking')->nullable();
+            $table->boolean('quit_smoking')->nullable();
+            $table->boolean('brief_counseling')->nullable();
             $table->unsignedBigInteger('time_first_cigar_type')->nullable();
             $table->foreign('time_first_cigar_type')
                 ->references('id')
@@ -70,9 +72,9 @@ return new class extends Migration
                 ->on('attributes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->boolean('first_hours_cigar')->default(false);
-            $table->boolean('smoking_sick')->default(false);
-            $table->boolean('smoking_prohibited_place')->default(false);
+            $table->boolean('first_hours_cigar')->nullable();
+            $table->boolean('smoking_sick')->nullable();
+            $table->boolean('smoking_prohibited_place')->nullable();
             $table->unsignedBigInteger('dislike_cigar_type')->nullable();
             $table->foreign('dislike_cigar_type')
                 ->references('id')

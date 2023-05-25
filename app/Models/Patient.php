@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $deleted_at
+ * @method static \Database\Factories\PatientFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Patient newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Patient newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Patient query()
@@ -171,7 +172,6 @@ class Patient extends Model
     {
         return $this->belongsTo(Attribute::class, 'race_type');
     }
-
 
 
 }

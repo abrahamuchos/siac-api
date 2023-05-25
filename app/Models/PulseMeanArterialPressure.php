@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property float                           $mean_arterial_pressure
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PulseMeanArterialPressure newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PulseMeanArterialPressure newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PulseMeanArterialPressure query()

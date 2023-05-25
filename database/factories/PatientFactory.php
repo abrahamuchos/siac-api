@@ -22,7 +22,7 @@ class PatientFactory extends Factory
         $bloodType = array(65, 66, 67, 68, 69, 70, 71, 72);
         $raceType = array(74, 75, 76, 77, 78);
         $documentType = array(44, 45, 46, 47);
-//        $first_consultation = (bool) random_int(0,1);
+
         return [
             'history_number' => DB::select("select nextval('history_number_patient_seq')")[0]->nextval,
             'first_name' => fake()->firstName(($gender ? 'male' : 'female')),
@@ -45,12 +45,8 @@ class PatientFactory extends Factory
             'username_facebook' => (random_int(0, 1) ? fake()->domainWord() : null),
             'phone_number' => fake()->phoneNumber(),
             'family_phone_number' => (random_int(0, 1) ? fake()->phoneNumber() : null),
-//            'admission' => null,
-//            'first_consultation' => $first_consultation,
             'race_type' => $raceType[array_rand($raceType)]
-
-
         ];
-
     }
+
 }

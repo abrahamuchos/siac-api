@@ -28,7 +28,7 @@ class FamilyBackgroundSeeder extends Seeder
                     ->create([
                         'background_id' => $background->id
                     ]);
-                //Alternamos crear 1 o 2 family background por background
+                //Random create 1 or 2 diseases per background
                 if(random_int(0,1)){
                     FamilyBackground::factory()
                         ->hasAttached($diseases->random(random_int(1,2)))

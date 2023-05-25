@@ -20,6 +20,7 @@ class ArrhythmiaEsvSeeder extends Seeder
         $backgrounds = Background::get(['id']);
 
         foreach ($backgrounds as $background){
+            // Random create Arrhythmia ESV to backgrounds
             if(random_int(0,1)){
                 ArrhythmiaEsv::factory()
                     ->create([
