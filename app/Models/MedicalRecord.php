@@ -225,14 +225,6 @@ class MedicalRecord extends Model
     }
 
     /**
-     * @return BelongsTo
-     */
-    public function pending(): BelongsTo
-    {
-        return $this->belongsTo(Pending::class);
-    }
-
-    /**
      * Get Pulse pressure and mean arterial pressure
      * @return BelongsTo
      */

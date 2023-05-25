@@ -63,16 +63,11 @@ return new class extends Migration {
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreignId('recipe_id')->nullable()
+            $table->foreignId('recipe_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreignId('report_id')
-                ->nullable()
-                ->constrained()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreignId('pending_id')
                 ->nullable()
                 ->constrained()
                 ->onDelete('cascade')
