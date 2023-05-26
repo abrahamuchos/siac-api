@@ -52,8 +52,8 @@ class WorkplanFactory extends Factory
         $workplan
             ->paraclinicalExams()
             ->attach([
-                $paraclinical->random(2)->first()->id,
-                $paraclinical->random(2)->last()->id,
+                $paraclinical->random(2)->first()->id => ['is_complete' => true],
+                $paraclinical->random(2)->last()->id  => ['is_complete' => true],
             ]);
 
     }

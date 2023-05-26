@@ -22,6 +22,7 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->boolean('is_complete')->default('false');
         });
     }
 
