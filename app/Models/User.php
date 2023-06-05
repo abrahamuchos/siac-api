@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +17,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
+
 
 /**
  * App\Models\User
@@ -57,6 +59,9 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property-read int|null                                                 $notifications_count
  * @property-read Collection<int, PersonalAccessToken>                     $tokens
  * @property-read int|null                                                 $tokens_count
+ * @property mixed                                                         $gradeType
+ * @property mixed                                                         $doctors
+ * @property mixed                                                         $roles
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -107,7 +112,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'public_id',
-        'first_name',
+        'firstName',
         'second_name',
         'first_surname',
         'second_surname',
@@ -258,5 +263,10 @@ class User extends Authenticatable
         return $this->belongsTo(City::class);
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+        $url = env('APP_FRONTEND_URL').'/reset-password?token='.$token;
 
+        $this->notify(new ResetPasswordNotification($url));
+    }
 }
