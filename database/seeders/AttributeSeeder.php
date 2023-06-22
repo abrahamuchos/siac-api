@@ -299,37 +299,37 @@ class AttributeSeeder extends Seeder
         Attribute::create([
             'attribute_id' => $day->id,
             'name' => 'Lunes',
-            'value' => 'Lun.'
+            'value' => '1'
         ]);
         Attribute::create([
             'attribute_id' => $day->id,
             'name' => 'Martes',
-            'value' => 'Mar.'
+            'value' => '2'
         ]);
         Attribute::create([
             'attribute_id' => $day->id,
             'name' => 'Miércoles',
-            'value' => 'Mié.'
+            'value' => '3'
         ]);
         Attribute::create([
             'attribute_id' => $day->id,
             'name' => 'Jueves',
-            'value' => 'Jue'
+            'value' => '4'
         ]);
         Attribute::create([
             'attribute_id' => $day->id,
             'name' => 'Viernes',
-            'value' => 'Vie.'
+            'value' => '5.'
         ]);
         Attribute::create([
             'attribute_id' => $day->id,
             'name' => 'Sábado',
-            'value' => 'Sáb.'
+            'value' => '6'
         ]);
         Attribute::create([
             'attribute_id' => $day->id,
             'name' => 'Domingo',
-            'value' => 'Dom.'
+            'value' => '7'
         ]);
 
         // Blood type
